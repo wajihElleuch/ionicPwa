@@ -6,4 +6,26 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="loadUsers(true, $event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+  <table border="1px solid black">
+    <tr>
+      <th>first name</th>
+      <th>last name </th>
+      <th>selected</th>
+    </tr>
+    <tr *ngFor="let user of users">
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>
+        <input type="checkbox" [value]="user.selected" [checked]="user.selected" (click)="updateSelected(user)">
+
+
+      </td>
+    </tr>
+
+  </table>
+</ion-content>
